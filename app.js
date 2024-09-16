@@ -5,6 +5,13 @@ const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
 
+// Start server
+connectDB();
+
+// router import
+const apiRoutes = require("./routes/apiRoutes");
+const userRoutes = require("./routes/userRoutes");
+
 const app = express();
 const PORT = process.env.PORT || 5050;
 
@@ -14,8 +21,10 @@ app.use(helmet());
 app.use(cors());
 app.use(morgan("dev"));
 
-// Start server
-connectDB();
+// Routes
+app.use("/", apiRoutes);
+app.use("/api/users", userRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
