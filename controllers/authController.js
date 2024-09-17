@@ -78,3 +78,18 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
+
+exports.deleteAccount = async (req, res) => {
+  try {
+    // Delete the authenticated user
+    const user = await User.findByIdAndDelete(req.user._id);
+
+    if (user) {
+      res.status(200).json({ message: "User account deleted successfully" });
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
