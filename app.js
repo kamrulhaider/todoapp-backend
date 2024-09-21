@@ -25,7 +25,7 @@ app.use(morgan("dev"));
 // Routes
 app.use("/", apiRoutes);
 app.use("/api/users", userRoutes);
-app.use(" /api/todos", todoRoutes);
+app.use("/api/todos", todoRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
